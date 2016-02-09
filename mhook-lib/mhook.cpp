@@ -518,7 +518,7 @@ static DWORD DisassembleAndSkip(PVOID pFunction, DWORD dwMinLen, MHOOKS_PATCHDAT
                 {
                     ODPRINTF((L"mhooks: DisassembleAndSkip: found OP_IPREL on operand %d with displacement 0x%x (in memory: 0x%x)", 1, pins->X86.Displacement, *(PDWORD)(pLoc+1)));
                     bProcessRip = TRUE;
-                    offset = 1;
+                    offset = pins->X86.Instruction->Length - sizeof(DWORD);
                 }
 				else if ( (pins->OperandCount >= 1) && (pins->Operands[0].Flags & OP_IPREL) )
 				{
